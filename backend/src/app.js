@@ -30,3 +30,4 @@ app.use('/', authRoutes);
 app.listen(PORT, () => {
     console.log(`Backend listening on http://localhost:${PORT}`);
 });
+
