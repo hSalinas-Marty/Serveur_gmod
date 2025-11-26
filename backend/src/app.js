@@ -3,9 +3,9 @@ const app = express();
 
 const PORT = 3000;
 
-app.get('/', (req, res) => {
-    res.send('hello');
-});
+const pagesRoutes = require('./routes/pages.routes');
+
+app.use('/', pagesRoutes);
 
 app.listen(PORT, () => {
     console.log(`Backend listening on http://localhost:${PORT}`);
