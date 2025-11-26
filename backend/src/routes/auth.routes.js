@@ -9,7 +9,7 @@ router.get('/auth/steam', passport.authenticate('steam'));
 // Callback après Steam
 router.get(
   '/auth/steam/return',
-  passport.authenticate('steam', { failureRedirect: '/' }),
+  passport.authenticate('steam', { failureRedirect: 'http://localhost:5173/' }),
   async (req, res) => {
     try {
         const steamId = req.user.steamId;
@@ -18,7 +18,7 @@ router.get(
 
         req.user.dbId = userRow.id;
 
-        res.redirect('/me');
+        res.redirect('http://localhost:5173/');
     } catch (err) {
         next(err);
     }
@@ -43,7 +43,7 @@ router.get('/me', (req, res) => {
 // Logout
 router.get('/logout', (req, res) => {
   req.logout(() => {
-    res.redirect('/');
+    res.redirect('http://localhost:5173/');
   });
 });
 

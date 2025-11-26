@@ -8,6 +8,13 @@ const pagesRoutes = require('./routes/pages.routes');
 const authRoutes = require('./routes/auth.routes');
 
 const app = express();
+const cors = require('cors');
+
+app.use(cors({
+    origin: 'http://localhost:5173',
+    creditentials: true
+}));
+
 const PORT = 3000;
 
 app.use(express.json());
