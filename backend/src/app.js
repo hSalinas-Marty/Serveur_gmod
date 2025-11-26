@@ -1,11 +1,31 @@
-const express = require('express');
-const app = express();
+require('dotenv').config();
 
-const PORT = 3000;
+const express = require('express');
+const session = require('express-session');
+const passport = require('./config/steamConfig');
 
 const pagesRoutes = require('./routes/pages.routes');
+const authRoutes = require('./routes/auth.routes');
+
+const app = express();
+const PORT = 3000;
+
+app.use(express.json());
+
+app.use(
+    session({
+        secret: process.env.SESSION_SECRET || 'dev-secret',
+        resave: false,
+        saveUninitialized: false,
+    })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 app.use('/', pagesRoutes);
+app.use('/', authRoutes);
 
 app.listen(PORT, () => {
     console.log(`Backend listening on http://localhost:${PORT}`);
