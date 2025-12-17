@@ -6,6 +6,7 @@ const passport = require('./config/steamConfig');
 
 const pagesRoutes = require('./routes/pages.routes');
 const authRoutes = require('./routes/auth.routes');
+const pagesApiRoutes = require('./routes/pagesApi.routes');
 
 const app = express();
 const cors = require('cors');
@@ -33,6 +34,7 @@ app.use(passport.session());
 
 app.use('/', pagesRoutes);
 app.use('/', authRoutes);
+app.use('/', pagesApiRoutes);
 
 app.listen(PORT, () => {
     console.log(`Backend listening on http://localhost:${PORT}`);

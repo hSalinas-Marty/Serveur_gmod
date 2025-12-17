@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react";
 
-export default function Reglement() {
+export default function Privacy() {
   const [page, setPage] = useState(null);
   const [err, setErr] = useState(null);
 
   useEffect(() => {
-    fetch("/api/pages/rules", { credentials: "include" })
+    fetch("/api/pages/privacy", { credentials: "include" })
       .then((r) => r.json())
-      .then((data) => {
-        if (data.error) setErr(data.error);
-        else setPage(data);
-      })
+      .then((data) => (data.error ? setErr(data.error) : setPage(data)))
       .catch(() => setErr("Erreur de chargement"));
   }, []);
 

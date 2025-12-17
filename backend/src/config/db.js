@@ -19,6 +19,16 @@ db.serialize(() => {
             created_at TEXT DEFAULT CURRENT_TIMESTAMP
         )
     `);
+
+    db.run(`
+        CREATE TABLE IF NOT EXISTS site_pages (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            page_key TEXT NOT NULL UNIQUE,
+            title TEXT NOT NULL,
+            content TEXT NOT NULL,
+            updated_at TEXT DEFAULT CURRENT_TIMESTAMP
+        )
+    `);
 });
 
 module.exports = db;
